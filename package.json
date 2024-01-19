@@ -1,0 +1,26 @@
+{
+  "name": "qa_cypress_challenge",
+  "version": "1.0.0",
+  "description": "Check24 Shopping Services QA challenge",
+  "main": "index.js",
+  "scripts": {
+    "script": "cypress run",
+    "cleanReport": "rmdir /S /Q cypress\\reports && mkdir cypress\\reports && mkdir cypress\\reports\\mochareports",
+    "pretest": "npm run cleanReport",
+    "combineReport": "mochawesome-merge ./cypress/reports/mocha/*.json > cypress/reports/mochareports/report.json",
+    "generateReport": "marge cypress/reports/mochareports/report.json -f report -o cypress/reports/mochareports",
+    "posttest": "npm run combineReport && npm run generateReport",
+    "test": "npm run script || npm run posttest"
+    },
+  "keywords": [],
+  "author": "Regina Wild",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.7.0",
+    "cypress-multi-reporters": "^1.6.4",
+    "mocha": "^10.2.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
+  }
+}
